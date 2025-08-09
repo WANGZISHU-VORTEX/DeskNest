@@ -22,18 +22,22 @@ DeskNest は、チームが効率的にデスクの予約、追跡、最適化�
 - 重複予約の防止機能
 - ワークスペース最適化のための使用状況分析
 - ロールベースのアクセス制御（管理者 / 一般ユーザー）
-- プロジェクトセットアップ
-- 前提条件
+
+## プロジェクトセットアップ
+
+前提条件
+
 - Node.js (v16 以上)
 - npm または yarn
-- PostgreSQL（または任意のデータベース）
+- MySQL（または任意のデータベース）
+- 環境変数ファイル（`.env`）：データベース接続情報やAPIポート等を設定（サンプルは `.env.example` を参照）
 
 ## インストール
 
 ```bash
 # リポジトリをクローン
 git clone git@github.com:WANGZISHU-VORTEX/DeskNest.git
-cd DeskNest
+cd DeskNest/api
 
 # 依存関係をインストール
 npm install
@@ -44,10 +48,8 @@ npm install
 環境変数の例ファイルをコピーし、設定を更新します：
 
 ```bash
-cp .env.example .env
+cp .env.example .env  # サンプルファイルをコピーして編集
 ```
-
-.envファイルでデータベース接続、ポート、その他の環境変数を設定します。
 
 ## アプリケーションの実行
 
@@ -69,19 +71,6 @@ npm run start:prod
 Swagger UI: http://localhost:3000/api
 
 OpenAPI 仕様: http://localhost:3000/api-json
-
-## テスト
-
-```bash
-# ユニットテスト
-npm run test
-
-# エンドツーエンドテスト
-npm run test:e2e
-
-# テストカバレッジ
-npm run test:cov
-```
 
 ## デプロイ
 
