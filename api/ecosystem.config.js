@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: 'desk-nest',
+    name: 'desknest',
     script: 'dist/src/main.js',
     exec_mode: "fork",
     instances: 1,
