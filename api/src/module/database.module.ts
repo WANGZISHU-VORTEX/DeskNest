@@ -10,17 +10,15 @@ import { UserEntity } from 'src/user/user.entity';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
+        type: configService.get<string>('DB_TYPE') as 'mysql' | 'postgres',
         host: configService.get<string>('DB_HOST'),
         port: configService.get<number>('DB_PORT'),
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         entities: [TestEntity, UserEntity],
-        synchronize:
-          configService.get<string>('NODE_ENV') === 'development' ||
-          configService.get<string>('NODE_ENV') === 'test',
-        logging: true,
+        synchronize: configService.get<string>('NODE_ENV') === 'production',
+        logging: configService.get<string>('DB_LOGGING') === 'true',
       }),
       inject: [ConfigService],
     }),
