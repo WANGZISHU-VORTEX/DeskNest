@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/auth/";
+const API_URL = "http://localhost:3000/api";
 
 const api = axios.create({
   baseURL: API_URL,
@@ -22,7 +22,7 @@ api.interceptors.request.use(
 
 export const AuthService = {
   async login(username: string, password: string) {
-    const response = await api.post("/login", { username, password });
+    const response = await api.post("/auth/login", { username, password });
     if (response.data.access_token) {
       localStorage.setItem("token", response.data.access_token);
     }
@@ -30,11 +30,13 @@ export const AuthService = {
   },
 
   async register(username: string, password: string) {
-    return api.post("/register", { username, password });
+    return api.post("/auth/register", { username, password });
   },
 
   async getProfile() {
-    return api.get("/profile");
+    const response = await api.get('/auth/profile');
+    this.user = response.data; 
+    return this.user
   },
 
   logout() {
