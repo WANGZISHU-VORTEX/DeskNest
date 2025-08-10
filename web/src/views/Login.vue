@@ -40,7 +40,7 @@ const handleLogin = async () => {
     error.value = '';
     await AuthService.login(username.value, password.value);
     router.push('/');
-  } catch (err: any) {
+  } catch (err) {
     error.value = err.response?.data?.message || 'Login failed';
   }
 };

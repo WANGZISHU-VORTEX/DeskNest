@@ -25,7 +25,7 @@ const fetchUserProfile = async () => {
   try {
     const data = await AuthService.getProfile();
     user.value = data;
-  } catch (err: any) {
+  } catch (err) {
     error.value = 'Failed to load user info';
     console.error(err);
   } finally {

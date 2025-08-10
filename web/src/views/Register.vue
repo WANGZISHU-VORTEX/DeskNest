@@ -45,7 +45,7 @@ const handleRegister = async () => {
     setTimeout(() => {
       router.push('/login');
     }, 2000);
-  } catch (err: any) {
+  } catch (err) {
     error.value = err.response?.data?.message || 'Registration failed';
   }
 };
